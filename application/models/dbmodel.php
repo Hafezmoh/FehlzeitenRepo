@@ -3,19 +3,23 @@ class dbmodel extends CI_Model
 {
     function checkuser($username, $password)
     {
-        $this->db->where('m_benutzer', $username);
-        $this->db->where('m_passwort', $password);
-        $this->db->from('tbl_mitarbeiter');
+        $this->db->where('b_name', $username);
+        $this->db->where('kennwort', $password);
+        $this->db->from('tbl_users');
         $query = $this->db->get();
         $result_array = $query->row_array(); 
         if (!empty($result_array)) {
-            $user_rule = $result_array['m_rule'];
-            $user_id = $result_array['m_id'];
-            $user_name = $result_array['m_benutzer'];
-            $this->session->set_userdata('user_rule_session', $user_rule);
+            $user_role = $result_array['role'];
+            $user_id = $result_array['id'];
+            $user_name = $result_array['b_name'];
+            $user_vor_name = $result_array['vorname'];
+            $user_nach_name = $result_array['nachname'];
+            $this->session->set_userdata('user_role_session', $user_role);
             $this->session->set_userdata('user_id_session', $user_id);
             $this->session->set_userdata('user_name_session', $user_name);
-            return $user_rule;
+            $this->session->set_userdata('user_vorname_session', $user_vor_name);
+            $this->session->set_userdata('user_nachname_session', $user_nach_name);
+            return $user_role;
         } else
             return 0;
     }

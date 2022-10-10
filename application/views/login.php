@@ -44,8 +44,8 @@ if (isset($error)) {
           <div class="row justify-content-center">
             <div class="col-md-8">
               <div class="mb-4">
-                <h3>Registrieren Sie Sich zu <strong>Projektzeiterfassung</strong></h3>
-                <p class="mb-4">Erfassen Sie Ihre Projektarbeitzeiten.</p>
+                <h3>Registrieren Sie Sich zu <strong>Fehlzeiterfassung</strong></h3>
+                <p class="mb-4">Erfassen Sie Ihre Fehlzeiten.</p>
               </div>
               <form action="userlogin" method="post">
                 <div class="form-group first">
