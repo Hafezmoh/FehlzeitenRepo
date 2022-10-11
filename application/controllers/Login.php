@@ -35,8 +35,8 @@ class Login extends CI_Controller
         // $salt1 = hash('sha512', $key . $userpass);
         // $salt2 = hash('sha512', $userpass  . $key);
         // $hashedCode = hash('sha512', $salt1 . $userpass  . $salt2);
-        
-         $check_user_type = $this->dbmodel->checkuser($username, $userpass);
+
+        $check_user_type = $this->dbmodel->checkuser($username, $userpass);
         // $project_array['projects_from_DB'] = $this->dbmodel->get_all_projects();
         // $project_array['worked_time_from_DB'] = $this->dbmodel->get_all_project_time();
 
@@ -50,8 +50,9 @@ class Login extends CI_Controller
                 break;
 
             case 2:                // 2 is the client rule
+                $array['users_array'] = $this->dbmodel->get_all_users();
                 $this->load->view('layout/header');
-                $this->load->view('client/formular',);
+                $this->load->view('client/formular', $array);
                 $this->load->view('layout/footer');
                 $array['error'] = null;
                 break;

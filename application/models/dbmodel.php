@@ -24,10 +24,11 @@ class dbmodel extends CI_Model
             return 0;
     }
 
-    function get_all_abteilungen()
+    function get_all_users()
     {
-        $query = $this->db->where('abt_id !=', 0) ;
-        $query = $this->db->from('tbl_abteilung');
+        $this->db->select('*');
+        $this->db->from('tbl_users');
+        $this->db->where('id !=', 1) ;
         $query = $this->db->get();
         $result_array = $query->result_array();
         return $result_array;

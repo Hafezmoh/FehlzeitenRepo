@@ -1,3 +1,6 @@
+<?php
+// var_dump($users_array)
+?>
 <style>
     #success_added {
         display: none;
@@ -28,41 +31,54 @@ $this->session->unset_userdata('time_added');
                 <div class="row">
                     <div class="form-group col-6 flex-column d-flex">
                         <label class="form-control-label px-3">
-                            Vorname</label>
-                        <input type="text" value="<?= $this->session->userdata('user_vorname_session') ?>" disabled>
+                            Name</label>
+                        <select name="name" id="name_id">
+                            <?php
+                            foreach ($users_array as $value) {
+                            ?>
+                                <option value="id">
+                                    <?php
+                                    echo $value['vorname'] . " " . $value['nachname']
+                                    ?>
+                                </option>
+                            <?php
+                            }
+                            ?>
+                        </select>
+                        <!-- <input type="text" value="<?= $this->session->userdata('user_vorname_session') ?>"> -->
                     </div>
                     <div class="form-group col-6 flex-column d-flex">
                         <label class="form-control-label px-3">
-                            Nachname</label>
-                        <input type="text" value="<?= $this->session->userdata('user_nachname_session') ?>" disabled>
+                            Gemeldet durch</label>
+                        <input type="text" value="<?= $this->session->userdata('user_vorname_session') . " " . $this->session->userdata('user_nachname_session') ?>" disabled>
                     </div>
                     <h2>Grund der Abwesenheit</h2>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="radio" id="radioid" checked>
+                        <input class="form-check-input" type="radio" name="radio" id="radioid" value="1" checked>
                         <label class="form-check-label" for="flexRadioDefault1">
                             Krankheit
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="radio" id="radioid">
+                        <input class="form-check-input" type="radio" name="radio" id="radioid" value="2">
                         <label class="form-check-label" for="flexRadioDefault2">
                             Arztbesuch
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="radio" id="radioid">
+                        <input class="form-check-input" type="radio" name="radio" id="radioid" value="3">
                         <label class="form-check-label" for="flexRadioDefault2">
                             Sonstiges:
                         </label>
                     </div>
-                    <div class="form-group col-6 flex-column d-flex"> <label class="form-control-label px-3" hidden>
-                            Bitte schreiben Sie eine hürze Erklärung: </label> <input type="text" id="note_id" name="note" hidden>
+                    <div class="form-group col-6 flex-column d-flex"> <label class="form-control-label px-3" id="label_id" style="display: none;">
+                            Bitte schreiben Sie eine kürze Erklärung: </label> <input type="text" id="note_id" name="note" style="display: none;">
                     </div>
                     <div>
 
                     </div>
                     <div class="form-group col-6 flex-column d-flex"> <label class="form-control-label px-3">
-                            Abwesend von: </label> <input type="date" id="von_date_id" name="von_date" >
+                            Abwesend von: </label> <input type="date" id="von_date_id" name="von_date">
                     </div>
                     <div class="form-group col-6 flex-column d-flex"> <label class="form-control-label px-3">
                             bis vorraussichtlich: </label> <input type="date" id="bis_date_id" name="bis_date">
@@ -102,5 +118,19 @@ $this->session->unset_userdata('time_added');
 
 
     <script>
+        $(function() {
+            $('input[name="radio"]').on('click', function() {
+                if ($(this).val() == '3') {
+                    $('#label_id').show();
+                    $('#note_id').show();
+
+                    // $('#packageList').show();
+                } else {
+                    $('#label_id').hide();
+                    $('#note_id').hide();
+                }
+            });
+        });
+
         document.getElementById('pro_date').valueAsDate = new Date();
     </script>
