@@ -45,7 +45,6 @@ $this->session->unset_userdata('time_added');
                             }
                             ?>
                         </select>
-                        <!-- <input type="text" value="<?= $this->session->userdata('user_vorname_session') ?>"> -->
                     </div>
                     <div class="form-group col-6 flex-column d-flex">
                         <label class="form-control-label px-3">
@@ -77,8 +76,14 @@ $this->session->unset_userdata('time_added');
                     <div>
 
                     </div>
+                    <div class="form-group col-6 flex-column d-flex"> <label class="form-control-label px-3" id="label2_id" style="display: none;">
+                            Bitte unbedingt eine Bescheinigung einfordern und unverzüglich an AW schicken. </label>
+                    </div>
+                    <div>
+
+                    </div>
                     <div class="form-group col-6 flex-column d-flex"> <label class="form-control-label px-3">
-                            Abwesend von: </label> <input type="date" id="von_date_id" name="von_date">
+                            Abwesend von: </label> <input type="date" id="von_date_id" name="von_date" value="<?php echo (new DateTime())->format('Y-m-d'); ?>">
                     </div>
                     <div class="form-group col-6 flex-column d-flex"> <label class="form-control-label px-3">
                             bis vorraussichtlich: </label> <input type="date" id="bis_date_id" name="bis_date">
@@ -88,13 +93,14 @@ $this->session->unset_userdata('time_added');
 
                     <div class="form-group col-sm-6 flex-column d-flex">
                         <label class="form-control-label px-3">
-                            ..
+                            von Uhr
                         </label>
                         <input type="time" id="von_uhr_id" name="von_uhr" value="<?php echo date('H:i') ?>">
                     </div>
 
                     <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">
-                            ..</label> <input type="time" id="bis_uhr_id" name="bis_uhr">
+                            bis Uhr
+                        </label> <input type="time" id="bis_uhr_id" name="bis_uhr">
                     </div>
                 </div>
 
@@ -123,9 +129,9 @@ $this->session->unset_userdata('time_added');
                 if ($(this).val() == '3') {
                     $('#label_id').show();
                     $('#note_id').show();
-
-                    // $('#packageList').show();
-                } else {
+                    $('#label2_id').hide();
+                } else if ($(this).val() == '1' || $(this).val() == '2') {
+                    $('#label2_id').show();
                     $('#label_id').hide();
                     $('#note_id').hide();
                 }
