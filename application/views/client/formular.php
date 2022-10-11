@@ -50,7 +50,7 @@ $this->session->unset_userdata('time_added');
                     <div class="form-group col-6 flex-column d-flex">
                         <label class="form-control-label px-3">
                             Gemeldet durch</label>
-                        <input type="text" value="<?= $this->session->userdata('user_vorname_session') . " " . $this->session->userdata('user_nachname_session') ?>" disabled>
+                        <input type="text" value="<?= $this->session->userdata('user_name_session') ?>" disabled>
                     </div>
                     <h2>Grund der Abwesenheit</h2>
                     <div class="form-check">
