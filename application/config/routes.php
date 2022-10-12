@@ -56,13 +56,6 @@ $route['translate_uri_dashes'] = FALSE;
 $route['admin_all_projects'] = 'Admin/all_projects';
 $route['admin_project/(:any)'] = 'Admin/project/$1';
 
-$route['admin_all_mitarbeiter'] = 'Admin/all_mitarbeiter';
-$route['add_project'] = 'Admin/new_project';
-$route['add_mitarbeiter'] = 'Admin/new_mitarbeiter';
-$route['add_abteilung'] = 'Admin/new_abteilung';
-$route['admin_abteilung'] = 'Admin/abteilungen';
-$route['act_add_mitarbeiter'] = 'Admin/con_add_mitarbeiter';
-
 $route['admin_ref_add_time'] = 'Admin/admin_add_time';
 $route['act_admin_add_time'] = 'Admin/act_admin_add_time';
 

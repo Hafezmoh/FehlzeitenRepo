@@ -403,14 +403,6 @@ class dbmodel extends CI_Model
         return $query->result_array();
     }
 
-    function get_user_info($id)
-    {
-        $this->db->from('tbl_mitarbeiter');
-        $this->db->where('m_id', $id);
-        $query = $this->db->get();
-        return $query->result_array();
-    }
-
     function get_project_id($id)
     {
         $this->db->select('auf_projekt_id');

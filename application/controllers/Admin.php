@@ -150,16 +150,6 @@ class Admin extends CI_Controller
         redirect('updateabteilung/' . $abt_id);
     }
 
-    public function delete_time($id)
-    {
-        $pro_id = $this->dbmodel->get_project_id($id);
-        $is_time_deleted = $this->dbmodel->delete_time($id);
-        if ($is_time_deleted == 1) {
-            $this->session->set_userdata('delete_success', 1);
-        }
-        redirect('admin_project/' . $pro_id[0]['auf_projekt_id']);
-    }
-
     public function delete_project($id)
     {
         $this->dbmodel->delete_all_aufgaben($id);
