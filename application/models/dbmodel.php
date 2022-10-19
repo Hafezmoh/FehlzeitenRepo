@@ -7,18 +7,18 @@ class dbmodel extends CI_Model
         $this->db->where('kennwort', $password);
         $this->db->from('tbl_users');
         $query = $this->db->get();
-        $result_array = $query->row_array(); 
-        if (!empty($result_array)) {
-            $user_role = $result_array['role'];
-            $user_id = $result_array['id'];
-            $user_name = $result_array['b_name'];
-            $user_vor_name = $result_array['vorname'];
-            $user_nach_name = $result_array['nachname'];
+        $result_row_array = $query->row_array(); 
+        if (!empty($result_row_array)) {
+            $user_role = $result_row_array['role'];
+            $user_id = $result_row_array['id'];
+            $user_name = $result_row_array['b_name'];
+            $vor_name = $result_row_array['vorname'];
+            $nach_name = $result_row_array['nachname'];
             $this->session->set_userdata('user_role_session', $user_role);
             $this->session->set_userdata('user_id_session', $user_id);
             $this->session->set_userdata('user_name_session', $user_name);
-            $this->session->set_userdata('user_vorname_session', $user_vor_name);
-            $this->session->set_userdata('user_nachname_session', $user_nach_name);
+            $this->session->set_userdata('vorname_session', $vor_name);
+            $this->session->set_userdata('nachname_session', $nach_name);
             return $user_role;
         } else
             return 0;
@@ -38,20 +38,22 @@ class dbmodel extends CI_Model
     {
 
         $this->db->select('*');
-        $this->db->select_sum('auf_gesamt_zeit');
-        $this->db->from('tbl_aufgabe');
-        $this->db->join('tbl_mitarbeiter', 'tbl_mitarbeiter.m_id = tbl_aufgabe.auf_mitarbeiter_id', 'right');
-        $this->db->join('tbl_abteilung', 'tbl_mitarbeiter.	m_abteillung_id = tbl_abteilung.abt_id');
-        $this->db->group_by('m_id');
+        $this->db->from('tbl_users');
+        $this->db->join('tbl_grund', 'tbl_users.id = tbl_grund.u_id');
+        $this->db->group_by('id');
         $query = $this->db->get();
         return $query->result_array();
     }
 
-    function get_all_projects()
+
+    function get_autor_name_from_DB($id)
     {
-        $query = $this->db->get('tbl_projekt');
-        $result_array = $query->result_array();
-        return $result_array;
+        $this->db->select('*');
+        $this->db->from('tbl_users');
+        $this->db->where('id',$id);
+        $query = $this->db->get();
+        $row_array = $query->row_array();
+        return $row_array;
     }
 
     function delete_project($id)
@@ -128,6 +130,25 @@ class dbmodel extends CI_Model
             'auf_start_zeit' => $mit_start, 'auf_ende_zeit' => $mit_end, 'auf_gesamt_zeit' => $time_type_total
         );
         $this->db->insert('tbl_aufgabe', $data);
+        return 1;
+    }
+
+    function add_fehlzeit($user_id, $krank_id, $grund, $notiz, $von, $bis , $von_uhr, $bis_uhr, $reg_datum )
+    {
+
+        // list($hour1, $minute1) = explode(':', $mit_end);
+        // list($hour, $minute) = explode(':', $mit_start);
+
+        // $time_type_end_time   = mktime($hour1, $minute1);
+        // $time_type_start_time = mktime($hour, $minute);
+        // $time_type_total = $time_type_end_time - $time_type_start_time;
+        $von_date = $von.$von_uhr;
+        $bis_date = $bis.$bis_uhr;
+        $data = array(
+            'autor_id' => $user_id, 'u_id' => $krank_id, 'grund' => $grund,
+            'note' => $notiz, 'von_datum' => $von_date, 'bis_datum' => $bis_date ,'reg_datum' => $reg_datum
+        );
+        $this->db->insert('tbl_grund', $data);
         return 1;
     }
 

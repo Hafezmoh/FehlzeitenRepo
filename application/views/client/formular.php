@@ -36,7 +36,7 @@ $this->session->unset_userdata('time_added');
                             <?php
                             foreach ($users_array as $value) {
                             ?>
-                                <option value="id">
+                                <option >
                                     <?php
                                     echo $value['vorname'] . " " . $value['nachname']
                                     ?>
@@ -44,6 +44,7 @@ $this->session->unset_userdata('time_added');
                             <?php
                             }
                             ?>
+                            <input type="hidden" name="name_id" value="<?php echo $value['id'] ?>">
                         </select>
                     </div>
                     <div class="form-group col-6 flex-column d-flex">
@@ -98,9 +99,11 @@ $this->session->unset_userdata('time_added');
                         <input type="time" id="von_uhr_id" name="von_uhr" value="<?php echo date('H:i') ?>">
                     </div>
 
-                    <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">
+                    <div class="form-group col-sm-6 flex-column d-flex"> 
+                        <label class="form-control-label px-3">
                             bis Uhr
-                        </label> <input type="time" id="bis_uhr_id" name="bis_uhr">
+                        </label>
+                         <input type="time" id="bis_uhr_id" name="bis_uhr">
                     </div>
                 </div>
 
@@ -138,5 +141,5 @@ $this->session->unset_userdata('time_added');
             });
         });
 
-        document.getElementById('pro_date').valueAsDate = new Date();
+       // document.getElementById('pro_date').valueAsDate = new Date();
     </script>

@@ -42,9 +42,11 @@ class Login extends CI_Controller
 
         switch ($check_user_type) {
             case 1:                //  1 is the admin rule
+                $this->load->helper('info_helper');
+                $array['mitarbeiter_from_DB'] = $this->dbmodel->get_all_mitarbeiter();
                 $this->load->view('layout/header');
                 $this->load->view('admin/sidenav');
-                $this->load->view('admin/all_projects');
+                $this->load->view('admin/all_mitarbeiter', $array);
                 $this->load->view('layout/footer');
                 $array['error'] = null;
                 break;
@@ -52,6 +54,7 @@ class Login extends CI_Controller
             case 2:                // 2 is the client rule
                 $array['users_array'] = $this->dbmodel->get_all_users();
                 $this->load->view('layout/header');
+                $this->load->view('client/sideNavClient');
                 $this->load->view('client/formular', $array);
                 $this->load->view('layout/footer');
                 $array['error'] = null;

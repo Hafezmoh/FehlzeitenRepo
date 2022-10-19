@@ -36,51 +36,42 @@ $this->session->unset_userdata('mit_deleted');
     <main>
         <div class="container-fluid px-4">
             <h1 class="mt-4">Alle Mitarbeiter</h1>
-            <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item active">Unternehmen</li>
-            </ol>
         </div>
         <div class="card-body">
             <table id="datatablesSimple">
                 <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Benuztername</th>
-                        <th>Abteilung</th>
-                        <th>Rolle</th>
-                        <th>Gesamte Zeit</th>
-                        <th>Steuerung</th>
+                        <th>gemeldet durch</th>
+                        <th>Grund der Abwesendheit</th>
+                        <th>Notiz</th>
+                        <th>Von Datum</th>
+                        <th>Bis Datum</th>
+                        <th>gemeldet am</th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
                         <th>Name</th>
-                        <th>Benuztername</th>
-                        <th>Abteilung</th>
-                        <th>Rolle</th>
-                        <th>Gesamte Zeit</th>
-                        <th>Steuerung</th>
+                        <th>gemeldet durch</th>
+                        <th>Grund der Abwesendheit</th>
+                        <th>Notiz</th>
+                        <th>Von Datum</th>
+                        <th>Bis Datum</th>
+                        <th>gemeldet am</th>
                 </tfoot>
                 <tbody>
                     <?php
                     foreach ($mitarbeiter_from_DB as $mit) {
                     ?>
                         <tr>
-                            <td><?php echo $mit['m_name']     ?> </td>
-                            <td><?php echo $mit['m_benutzer'] ?> </td>
-                            <td><?php echo $mit['abt_name'] ?> </td>
-                            <td><?php if ($mit['m_rule'] == 1) {
-                                    echo "Admin";
-                                } else {
-                                    echo "Mitarbeiter";
-                                } ?> </td>
-                            <td><?php echo date('H:i', $mit['auf_gesamt_zeit'] - 3600)  ?> </td>
-                            <td style="width: auto">
-                                <a href="<?php echo base_url() ?>ref_update_mit/<?php echo $mit['m_id'] ?>">
-                                    <i class="fa fa-pen" style="color:green"></i></a>-
-                                <a href="#" onclick="ConfirmDelete(<?php echo $mit['m_id'] ?>)">
-                                    <i class="fa fa-times-circle" style="color:red"></i> </a>
-                            </td>
+                            <td><?php echo $mit['vorname'] . " " . $mit['nachname'] ?> </td>
+                            <td><?php echo get_autor_name($mit['autor_id']) ?> </td>
+                            <td><?php echo GRUND[$mit['grund']] ?> </td>
+                            <td><?php echo $mit['note'] ?> </td>
+                            <td><?php echo date("d M Y", strtotime($mit['von_datum']))  ?> </td>
+                            <td><?php echo date("d M Y", strtotime($mit['bis_datum']))  ?> </td>
+                            <td><?php echo $mit['reg_datum'] ?> </td>
                         </tr>
                     <?php
                     }

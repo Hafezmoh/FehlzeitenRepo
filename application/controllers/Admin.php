@@ -6,7 +6,7 @@ class Admin extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        if (!$this->session->userdata('user_rule_session')) {
+        if (!$this->session->userdata('user_role_session')) {
             redirect('userlogin');
         }
     }
@@ -81,10 +81,11 @@ class Admin extends CI_Controller
 
     public function all_mitarbeiter()
     {
-        $project_array['projects_from_DB'] = $this->dbmodel->get_all_projects();
         $array['mitarbeiter_from_DB'] = $this->dbmodel->get_all_mitarbeiter();
+        var_dump($array['mitarbeiter_from_DB']);
+        exit();
         $this->load->view('layout/header');
-        $this->load->view('admin/sidenav', $project_array);
+        $this->load->view('admin/sidenav');
         $this->load->view('admin/all_mitarbeiter', $array);
         $this->load->view('layout/footer');
     }
@@ -323,6 +324,34 @@ class Admin extends CI_Controller
             $this->session->set_userdata('time_added', 1);
         }
         redirect('admin_ref_add_time');
+    }
+
+    public function fun_add_fehlzeit()
+    {
+        $user_id = $this->session->userdata('user_id_session');
+        $krank_id = $this->input->post('name_id');
+        $grund = $this->input->post('radio');
+        $notiz = $this->input->post('note');
+        $von = $this->input->post('von_date');
+        $bis = $this->input->post('bis_date');
+        $von_uhr = $this->input->post('von_uhr');
+        $bis_uhr = $this->input->post('bis_uhr');
+        $reg_datum = date('Y-m-d');
+
+
+         var_dump($user_id,$krank_id,$grund,$notiz,$von,$bis,$von_uhr,$bis_uhr,$reg_datum);
+         exit();
+
+        if ($von > $bis) {
+            $temp = $von;
+            $von = $bis;
+            $bis = $temp;
+        }
+        $ist_fehlzeit_addiert = $this->dbmodel->add_fehlzeit($user_id, $krank_id, $grund, $notiz, $von, $bis , $von_uhr, $bis_uhr, $reg_datum );
+        if ($ist_fehlzeit_addiert == 1) {
+            $this->session->set_userdata('time_added', 1);
+        }
+        redirect('userlogin');
     }
 
     public function update_project_in_DB()

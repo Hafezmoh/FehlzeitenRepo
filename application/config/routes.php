@@ -52,6 +52,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+$route['ref_logout'] = 'Login/logout';
+
+$route['userlogin'] = 'Login/register';
+$route['act_add_fehlzeit'] = 'Admin/fun_add_fehlzeit';
+
+
+
 
 $route['admin_all_projects'] = 'Admin/all_projects';
 $route['admin_project/(:any)'] = 'Admin/project/$1';
@@ -99,9 +106,7 @@ $route['act_mit_add_time'] = 'Mitarbeiter/act_mit_add_time';
 
 $route['mit_all_projects'] = 'Mitarbeiter/mit_all_projects';
 
-$route['ref_logout'] = 'Login/logout';
 
-$route['userlogin'] = 'Login/register';
 
 
 
