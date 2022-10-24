@@ -1,7 +1,7 @@
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="<?php echo base_url() ?>admin_all_projects">Fehlzeiterfassung</a>
+        <a class="navbar-brand ps-3" href="<?php echo base_url() ?>admin_aktuel_fehlzeiten">Fehlzeiterfassung</a>
         <!-- Sidebar Toggle-->
         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
         <!-- Navbar Search-->
@@ -31,11 +31,11 @@
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading"> Mitarbeiter </div>
-                        <a class="nav-link" href="<?php echo base_url() ?>add_project">
+                        <a class="nav-link" href="<?php echo base_url() ?>all_mitarbeiter_ref">
                             <div class="sb-nav-link-icon"><i class="fas fa-plus"></i></div>
                             Alle Mitarbeiter
                         </a>
-                        <a class="nav-link" href="<?php echo base_url() ?>add_mitarbeiter">
+                        <a class="nav-link" href="<?php echo base_url() ?>add_mitarbeiter_ref">
                             <div class="sb-nav-link-icon"><i class="fas fa-user-plus"></i></div>
                             Mitarbeiter addieren
                         </a>

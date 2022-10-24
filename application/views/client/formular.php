@@ -36,7 +36,7 @@ $this->session->unset_userdata('time_added');
                             <?php
                             foreach ($users_array as $value) {
                             ?>
-                                <option >
+                                <option>
                                     <?php
                                     echo $value['vorname'] . " " . $value['nachname']
                                     ?>
@@ -54,7 +54,7 @@ $this->session->unset_userdata('time_added');
                     </div>
                     <h2>Grund der Abwesenheit</h2>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="radio" id="radioid" value="1" checked>
+                        <input class="form-check-input" type="radio" name="radio" id="radioid" value="1">
                         <label class="form-check-label" for="flexRadioDefault1">
                             Krankheit
                         </label>
@@ -75,7 +75,7 @@ $this->session->unset_userdata('time_added');
                             Bitte schreiben Sie eine kürze Erklärung: </label> <input type="text" id="note_id" name="note" style="display: none;">
                     </div>
                     <div>
-
+                        <br>
                     </div>
                     <div class="form-group col-6 flex-column d-flex"> <label class="form-control-label px-3" id="label2_id" style="display: none;">
                             Bitte unbedingt eine Bescheinigung einfordern und unverzüglich an AW schicken. </label>
@@ -99,11 +99,11 @@ $this->session->unset_userdata('time_added');
                         <input type="time" id="von_uhr_id" name="von_uhr" value="<?php echo date('H:i') ?>">
                     </div>
 
-                    <div class="form-group col-sm-6 flex-column d-flex"> 
+                    <div class="form-group col-sm-6 flex-column d-flex">
                         <label class="form-control-label px-3">
                             bis Uhr
                         </label>
-                         <input type="time" id="bis_uhr_id" name="bis_uhr">
+                        <input type="time" id="bis_uhr_id" name="bis_uhr">
                     </div>
                 </div>
 
@@ -141,5 +141,37 @@ $this->session->unset_userdata('time_added');
             });
         });
 
-       // document.getElementById('pro_date').valueAsDate = new Date();
+        // document.getElementById('pro_date').valueAsDate = new Date();
+
+        function show_error(error) {
+            $('#error_mitarbeiter').show();
+            $('#error_msg').html(error);
+            $('#success_added').hide();
+            $('#fail_added').hide();
+        }
+
+        function check_mitarbeiter_data() {
+            var mit_name = document.getElementsByName('name')[0].value;
+            var grund =    document.getElementsByName('radio')[0].value;
+            var von_date = document.getElementsByName('von_date')[0].value;
+            var bis_date = document.getElementsByName('bis_date')[0].value;
+            var von_uhr = document.getElementsByName('von_uhr')[0].value;
+            var bis_uhr = document.getElementsByName('bis_uhr')[0].value;
+
+            if (mit_name.length == 0) {
+                show_error('Mitarbeitername ist ungültig!!');
+            } else if (grund.is_null) {/////////////
+                show_error('Bitte wählen Sie einen Grund aus!!');
+            } else if (von_date.length == 0) {
+                show_error('Ab wann sind Sie abwesend?');
+            } else if (bis_date.length == 0) {
+                show_error('Bis wann sind Sie abwesend?');
+            } else if (von_uhr.length == 0) {
+                show_error('Ab wann sind Sie abwesend?');
+            } else if (bis_uhr.length <= 5) {
+                show_error('Bis wann sind Sie abwesend?');
+            } else {
+                $('#add_mitarbeiter_form').submit();
+            }
+        }
     </script>

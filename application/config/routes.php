@@ -52,59 +52,65 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+
 $route['ref_logout'] = 'Login/logout';
 
 $route['userlogin'] = 'Login/register';
-$route['act_add_fehlzeit'] = 'Admin/fun_add_fehlzeit';
+$route['fehlzeiten_view'] = 'Mitarbeiter/formular_con';
+$route['act_add_fehlzeit'] = 'Mitarbeiter/fun_add_fehlzeit';
+
+ $route['admin_aktuel_fehlzeiten'] = 'Admin/all_fehlzeiten';
+ $route['all_mitarbeiter_ref'] = 'Admin/all_mitarbeiter';
+ $route['add_mitarbeiter_ref'] = 'Admin/add_mitarbeiter';
+
+ $route['act_add_mitarbeiter'] = 'Admin/con_add_mitarbeiter';
+
+
+// $route['admin_project/(:any)'] = 'Admin/project/$1';
+
+// $route['admin_ref_add_time'] = 'Admin/admin_add_time';
+// $route['act_admin_add_time'] = 'Admin/act_admin_add_time';
+
+// $route['send_new_abteilung'] = 'Admin/add_abteilung';
+// $route['send_new_project'] = 'Admin/add_project_data_to_DB';
+
+// $route['updateProject/(:any)'] = 'Admin/update_project/$1';
+
+// $route['deleteProject/(:any)'] = 'Admin/delete_project/$1';
+// $route['deleteAbteilung/(:any)'] = 'Admin/delete_abteilung/$1';
+
+// $route['ref_deletetime/(:any)'] = 'Admin/delete_time/$1';
+
+
+// $route['ref_update_mit/(:any)'] = 'Admin/update_mit/$1';
+// $route['updateabteilung/(:any)'] = 'Admin/update_abteilung/$1';
+
+// $route['ref_delete_mit/(:any)'] = 'Admin/delete_mit/$1';
+
+// $route['ref_update_time'] = 'Admin/update_time_in_DB';
+// $route['act_update_project'] = 'Admin/update_project_in_DB';
+// $route['act_update_mitarbeiter'] = 'Admin/update_mit_in_DB';
+// $route['send_edited_abteilung'] = 'Admin/update_abt_in_DB';
 
 
 
 
-$route['admin_all_projects'] = 'Admin/all_projects';
-$route['admin_project/(:any)'] = 'Admin/project/$1';
+// $route['mit_project/(:any)'] = 'Mitarbeiter/mit_project/$1';
 
-$route['admin_ref_add_time'] = 'Admin/admin_add_time';
-$route['act_admin_add_time'] = 'Admin/act_admin_add_time';
+// $route['updatetime/(:any)'] = 'Admin/update_time/$1';
 
-$route['send_new_abteilung'] = 'Admin/add_abteilung';
-$route['send_new_project'] = 'Admin/add_project_data_to_DB';
+// $route['ref_mit_update_time'] = 'Mitarbeiter/update_time_in_DB';
 
-$route['updateProject/(:any)'] = 'Admin/update_project/$1';
-
-$route['deleteProject/(:any)'] = 'Admin/delete_project/$1';
-$route['deleteAbteilung/(:any)'] = 'Admin/delete_abteilung/$1';
-
-$route['ref_deletetime/(:any)'] = 'Admin/delete_time/$1';
+// $route['ref_mit_deletetime/(:any)'] = 'Mitarbeiter/delete_time/$1';
+// $route['ref_mit_updatetime/(:any)'] = 'Mitarbeiter/update_time/$1';
 
 
-$route['ref_update_mit/(:any)'] = 'Admin/update_mit/$1';
-$route['updateabteilung/(:any)'] = 'Admin/update_abteilung/$1';
-
-$route['ref_delete_mit/(:any)'] = 'Admin/delete_mit/$1';
-
-$route['ref_update_time'] = 'Admin/update_time_in_DB';
-$route['act_update_project'] = 'Admin/update_project_in_DB';
-$route['act_update_mitarbeiter'] = 'Admin/update_mit_in_DB';
-$route['send_edited_abteilung'] = 'Admin/update_abt_in_DB';
+// $route['mit_ref_add_time'] = 'Mitarbeiter/mit_add_time';
+// $route['act_mit_add_time'] = 'Mitarbeiter/act_mit_add_time';
 
 
-
-
-$route['mit_project/(:any)'] = 'Mitarbeiter/mit_project/$1';
-
-$route['updatetime/(:any)'] = 'Admin/update_time/$1';
-
-$route['ref_mit_update_time'] = 'Mitarbeiter/update_time_in_DB';
-
-$route['ref_mit_deletetime/(:any)'] = 'Mitarbeiter/delete_time/$1';
-$route['ref_mit_updatetime/(:any)'] = 'Mitarbeiter/update_time/$1';
-
-
-$route['mit_ref_add_time'] = 'Mitarbeiter/mit_add_time';
-$route['act_mit_add_time'] = 'Mitarbeiter/act_mit_add_time';
-
-
-$route['mit_all_projects'] = 'Mitarbeiter/mit_all_projects';
+// $route['mit_all_projects'] = 'Mitarbeiter/mit_all_projects';
 
 
 

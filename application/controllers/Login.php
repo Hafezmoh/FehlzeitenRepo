@@ -41,17 +41,17 @@ class Login extends CI_Controller
         // $project_array['worked_time_from_DB'] = $this->dbmodel->get_all_project_time();
 
         switch ($check_user_type) {
-            case 1:                //  1 is the admin rule
+            case 1:                //  1 is the admin role
                 $this->load->helper('info_helper');
-                $array['mitarbeiter_from_DB'] = $this->dbmodel->get_all_mitarbeiter();
+                $array['mitarbeiter_from_DB'] = $this->dbmodel->get_all_fehlzeiten();
                 $this->load->view('layout/header');
                 $this->load->view('admin/sidenav');
-                $this->load->view('admin/all_mitarbeiter', $array);
+                $this->load->view('admin/fehlzeiten', $array);
                 $this->load->view('layout/footer');
                 $array['error'] = null;
                 break;
 
-            case 2:                // 2 is the client rule
+            case 2:                // 2 is the client role
                 $array['users_array'] = $this->dbmodel->get_all_users();
                 $this->load->view('layout/header');
                 $this->load->view('client/sideNavClient');
