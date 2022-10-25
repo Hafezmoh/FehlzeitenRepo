@@ -31,8 +31,12 @@
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading"> Mitarbeiter </div>
+                        <a class="nav-link" href="<?php echo base_url() ?>admin_aktuel_fehlzeiten">
+                            <div class="sb-nav-link-icon"><i class="fa fa-user-times"></i></div>
+                            Aktuelle Fehlzeiten
+                        </a>
                         <a class="nav-link" href="<?php echo base_url() ?>all_mitarbeiter_ref">
-                            <div class="sb-nav-link-icon"><i class="fas fa-plus"></i></div>
+                            <div class="sb-nav-link-icon"><i class="fa fa-users"></i></div>
                             Alle Mitarbeiter
                         </a>
                         <a class="nav-link" href="<?php echo base_url() ?>add_mitarbeiter_ref">

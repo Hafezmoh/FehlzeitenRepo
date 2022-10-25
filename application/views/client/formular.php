@@ -5,6 +5,10 @@
     #success_added {
         display: none;
     }
+
+    #error_formular {
+        display: none;
+    }
 </style>
 
 <?php
@@ -27,7 +31,7 @@ $this->session->unset_userdata('time_added');
         <div class="container-fluid px-4">
             <h1 class="mt-4">Fehlzeit addieren</h1>
             <h2 class="mt-4"><?= date("l-Y-M-d") ?></h2>
-            <form id="add_fehlzeit" method="POST" action="act_add_fehlzeit">
+            <form id="add_fehlzeit_form" method="POST" action="act_add_fehlzeit">
                 <div class="row">
                     <div class="form-group col-6 flex-column d-flex">
                         <label class="form-control-label px-3">
@@ -111,13 +115,16 @@ $this->session->unset_userdata('time_added');
 
                 <div class="d-flex justify-content-center">
                     <div class="form-group">
-                        <button type="submit" class="btn-block btn-primary" style="margin-top: 50px;">
+                        <button type="button" onclick="check_mitarbeiter_data()" class="btn-block btn-primary" style="margin-top: 50px;">
                             Jetzt absenden</button>
                     </div>
                 </div>
                 <br><br>
                 <div id="success_added" class="alert alert-success" role="alert">
                     <p>Fehlzeit wurde hinzufügt</p>
+                </div>
+                <div id="error_formular" class="alert alert-danger" role="alert">
+                    <p id="error_msg"></p>
                 </div>
 
             </form>
@@ -127,16 +134,20 @@ $this->session->unset_userdata('time_added');
 
 
     <script>
+        var radiovar = 0;
         $(function() {
             $('input[name="radio"]').on('click', function() {
+                $('#error_formular').hide(); // Fehlermeldung löschen wenn auf Radiobutton gedrückt werden
                 if ($(this).val() == '3') {
                     $('#label_id').show();
                     $('#note_id').show();
                     $('#label2_id').hide();
+                     radiovar = 3;
                 } else if ($(this).val() == '1' || $(this).val() == '2') {
                     $('#label2_id').show();
                     $('#label_id').hide();
                     $('#note_id').hide();
+                    radiovar = 0;
                 }
             });
         });
@@ -144,34 +155,38 @@ $this->session->unset_userdata('time_added');
         // document.getElementById('pro_date').valueAsDate = new Date();
 
         function show_error(error) {
-            $('#error_mitarbeiter').show();
+            $('#error_formular').show();
             $('#error_msg').html(error);
             $('#success_added').hide();
-            $('#fail_added').hide();
         }
+
 
         function check_mitarbeiter_data() {
             var mit_name = document.getElementsByName('name')[0].value;
-            var grund =    document.getElementsByName('radio')[0].value;
+            var grund = document.querySelectorAll('input[type="radio"]:checked').length == 0;
+            var note = document.getElementsByName('note')[0].value;
             var von_date = document.getElementsByName('von_date')[0].value;
             var bis_date = document.getElementsByName('bis_date')[0].value;
             var von_uhr = document.getElementsByName('von_uhr')[0].value;
             var bis_uhr = document.getElementsByName('bis_uhr')[0].value;
-
+            console.log(grund);
+            console.log(radiovar);
             if (mit_name.length == 0) {
                 show_error('Mitarbeitername ist ungültig!!');
-            } else if (grund.is_null) {/////////////
+            } else if (grund) {
                 show_error('Bitte wählen Sie einen Grund aus!!');
             } else if (von_date.length == 0) {
-                show_error('Ab wann sind Sie abwesend?');
+                show_error('Ab welchem Tag sind Sie abwesend?');
             } else if (bis_date.length == 0) {
-                show_error('Bis wann sind Sie abwesend?');
+                show_error('Bis welchem Tag sind Sie abwesend?');
             } else if (von_uhr.length == 0) {
-                show_error('Ab wann sind Sie abwesend?');
-            } else if (bis_uhr.length <= 5) {
-                show_error('Bis wann sind Sie abwesend?');
+                show_error('Ab welcher Uhr sind Sie abwesend?');
+            } else if (bis_uhr.length == 0) {
+                show_error('Bis welcher Uhr sind Sie abwesend?');
+            } else if (radiovar == 3 && note.length == 0 ) {
+                show_error('Note?');
             } else {
-                $('#add_mitarbeiter_form').submit();
+                $('#add_fehlzeit_form').submit();
             }
         }
     </script>
