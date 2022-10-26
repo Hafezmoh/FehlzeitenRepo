@@ -7,9 +7,9 @@
         display: none;
     }
 
-    #failed_edit {
+    /* #failed_edit {
         display: none;
-    }
+    } */
 </style>
 
 <?php
@@ -25,7 +25,9 @@ if (isset($deleted)) {
 <?php
 }
 $this->session->unset_userdata('deleted');
-$updated = $this->session->userdata('updated');
+
+
+$updated = $this->session->userdata('success_updated');
 if (isset($updated)) {
 ?>
     <style>
@@ -35,25 +37,27 @@ if (isset($updated)) {
     </style>
 <?php
 }
-$this->session->unset_userdata('updated');
-$same_name = $this->session->userdata('failed');
-if (isset($same_name)) {
-?>
-    <style>
-        #failed_edit {
-            display: block;
-        }
-    </style>
-<?php
-}
-$this->session->unset_userdata('failed');
+$this->session->unset_userdata('success_updated');
+
+
+// $same_name = $this->session->userdata('fail_name');
+// if (isset($same_name)) {
+// ?>
+//     <!-- <style>
+//         #failed_edit {
+//             display: block;
+//         }
+//     </style> -->
+// <?php
+// }
+// $this->session->unset_userdata('failed');
 ?>
 <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid px-4">
-            <h1 class="mt-4">Alle Projekte</h1>
+            <h1 class="mt-4">Alle Mitarbeiter</h1>
             <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item active">Projektzeiten</li>
+                <li class="breadcrumb-item active">Fehlzeiten</li>
             </ol>
         </div>
         <div class="card-body">
@@ -99,19 +103,19 @@ $this->session->unset_userdata('failed');
             </table>
             <br><br>
             <div id="success_delete" class="alert alert-success" role="alert">
-                <p>Projekt wurde gelöscht</p>
+                <p>Mitarbeiter wurde gelöscht</p>
             </div>
             <div id="success_edit" class="alert alert-success" role="alert">
                 <p>Änderung wurden gespeichert</p>
             </div>
-            <div id="failed_edit" class="alert alert-danger" role="alert">
-                <p>Projektname exsitiert schon!</p>
-            </div>
+            <!-- <div id="failed_edit" class="alert alert-danger" role="alert">
+                <p>Benuztername exsitiert schon!</p>
+            </div> -->
         </div>
     </main>
     <script type="text/javascript">
-        function ConfirmDelete($pro) {
-            if (confirm("Delete Projekt?"))
-                location.href = "deleteProject/" + $pro;
+        function ConfirmDelete($mit_id) {
+            if (confirm("Delete Mitarbeiter? Alle Fehlzeiten des Mitarbeiters werden auch gelöscht"))
+                location.href = "deleteMitarbeiter/" + $mit_id;
         }
     </script>

@@ -52,9 +52,13 @@ $this->session->unset_userdata('fail');
                     <div class="row justify-content-between text-left" style="margin-top: 50px;">
                         <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">
                                 Benutzername</label> <input type="text" id="b_name" name="b_name"> </div>
-
+                    </div>
+                    <div class="row justify-content-between text-left" style="margin-top: 50px;">
                         <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">
                                 Passwort</label> <input type="text" id="passwort" name="passwort"> </div>
+
+                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">
+                                Passwort Bestätigung</label> <input type="text" id="w_passwort" name="w_passwort"> </div>
                     </div>
 
                     <div class="d-flex justify-content-center" style="margin-top: 50px;">
@@ -87,6 +91,7 @@ $this->session->unset_userdata('fail');
             var mit_nachname = document.getElementsByName('nach_name')[0].value;
             var mit_benutzer = document.getElementsByName('b_name')[0].value;
             var mit_passwort = document.getElementsByName('passwort')[0].value;
+            var mit_passwort_w = document.getElementsByName('w_passwort')[0].value;
 
             if (mit_name.length == 0) {
                 show_error('Vorname ist ungültig!!');
@@ -96,6 +101,10 @@ $this->session->unset_userdata('fail');
                 show_error('Benutzername ist ungültig!!');
             } else if (mit_passwort.length <= 5) {
                 show_error('Passwort ist zu kürz!! Das Passwort sollte mindestens 5 Zeichnen sein ');
+            } else if (mit_passwort_w.length <= 5) {
+                show_error('Passwort Bestätigung ist zu kürz!! Das Passwort sollte mindestens 5 Zeichnen sein');
+            } else if (mit_passwort != mit_passwort_w) {
+                show_error('Die eingegebenen Passwörter stimmen nicht überein');
             } else {
                 $('#add_mitarbeiter_form').submit();
             }

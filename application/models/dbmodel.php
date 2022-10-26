@@ -38,8 +38,8 @@ class dbmodel extends CI_Model
     {
 
         $this->db->select('*');
-        $this->db->from('tbl_users');
-        $this->db->join('tbl_grund', 'tbl_users.id = tbl_grund.u_id');
+        $this->db->from('tbl_grund');
+        $this->db->join('tbl_users', 'tbl_users.id = tbl_grund.u_id');
         $this->db->group_by('gr_id');
         $query = $this->db->get();
         return $query->result_array();
@@ -83,16 +83,93 @@ class dbmodel extends CI_Model
         $this->db->from('tbl_users');
         $query = $this->db->get();
         $result_array = $query->result_array();
-        if (empty($result_array)) {
+        if (empty($result_array)) { // check if the user name already exist in the DB
             $data = array(
                 'vorname' => $mit_name, 'nachname' => $mit_nachname, 'b_name' => $mit_benuzter,
-                'kennwort' => $mit_password, 'role' =>2
+                'kennwort' => $mit_password, 'role' => 2
             );
             $this->db->insert('tbl_users', $data);
             return 1;
         } else {
             return 0;
         }
+    }
+
+
+    function get_mit($id) // getting the user info to show it in the update view
+    {
+        $this->db->from('tbl_users');
+        $this->db->where('id', $id);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    function check_is_Bname_existiert($mit_benuzter)
+    {
+        $this->db->select('*');
+        $this->db->where('b_name', $mit_benuzter);
+        $this->db->from('tbl_users');
+        $query = $this->db->get();
+        $result_array = $query->result_array();
+        if (!empty($result_array)) {
+            return 1;
+        }
+    }
+
+    function check_is_same_Bname($mit_id, $mit_benuzter)
+    {
+        $this->db->select('*');
+        $this->db->where('id', $mit_id);
+        $this->db->where('b_name', $mit_benuzter);
+        $this->db->from('tbl_users');
+        $query = $this->db->get();
+        $result_array = $query->result_array();
+        if (!empty($result_array)) {
+            return 1;
+        }
+    }
+
+    function update_mitarbeiter_same_Bname($mit_id, $mit_vorname, $mit_nachname)
+    {
+        $data = array(
+            'vorname' => $mit_vorname, 'nachname' => $mit_nachname
+        );
+        $this->db->where('id', $mit_id);
+        $this->db->update('tbl_users', $data);
+        return 1;
+    }
+
+    function update_mitarbeiter_with_pass_same_Bname($mit_id, $mit_vorname, $mit_nachname, $mit_password)
+    {
+        $data = array(
+            'vorname' => $mit_vorname, 'nachname' => $mit_nachname, 'kennwort' => $mit_password
+        );
+        $this->db->where('id', $mit_id);
+        $this->db->update('tbl_users', $data);
+        return 1;
+    }
+
+    function update_mitarbeiter_with_pass($mit_id, $mit_vorname, $mit_nachname, $mit_benuzter_name, $mit_password)
+    {
+        $data = array(
+            'vorname' => $mit_vorname, 'nachname' => $mit_nachname, 'kennwort' => $mit_password, 'b_name' => $mit_benuzter_name
+        );
+        $this->db->where('id', $mit_id);
+        $this->db->update('tbl_users', $data);
+        return 1;
+    }
+
+    function delete_mitarbeiter($id)
+    {
+        $this->db->where('id', $id);
+        $this->db->delete('tbl_users');
+        return 1;
+    }
+
+    function delete_all_fehlzeiten($id)
+    {
+        $this->db->where('u_id', $id);
+        $this->db->delete('tbl_grund');
     }
 
     // function delete_project($id)
@@ -328,18 +405,7 @@ class dbmodel extends CI_Model
     //     }
     // }
 
-    // function check_is_same_Bname($mit_id, $mit_benuzter)
-    // {
-    //     $this->db->select('*');
-    //     $this->db->where('m_id', $mit_id);
-    //     $this->db->where('m_benutzer', $mit_benuzter);
-    //     $this->db->from('tbl_mitarbeiter');
-    //     $query = $this->db->get();
-    //     $result_array = $query->result_array();
-    //     if (!empty($result_array)) {
-    //         return 1;
-    //     }
-    // }
+
 
 
     // function check_is_last_Admin_changed($mit_id,$mit_rule)
@@ -401,14 +467,6 @@ class dbmodel extends CI_Model
     //     return $query->result_array();
     // }
 
-    // function get_mit($id)
-    // {
-    //     $this->db->from('tbl_mitarbeiter');
-    //     $this->db->where('m_id', $id);
-    //     $this->db->join('tbl_abteilung', 'tbl_mitarbeiter.	m_abteillung_id = tbl_abteilung.abt_id', 'right');
-    //     $query = $this->db->get();
-    //     return $query->result_array();
-    // }
 
     // function get_abteilung($abt_id)
     // {
@@ -473,5 +531,4 @@ class dbmodel extends CI_Model
     //     $query = $this->db->get();
     //     return $query->result_array();
     // }
-
 }

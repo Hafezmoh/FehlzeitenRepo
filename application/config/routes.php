@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
 | -------------------------------------------------------------------------
@@ -60,12 +60,15 @@ $route['userlogin'] = 'Login/register';
 $route['fehlzeiten_view'] = 'Mitarbeiter/formular_con';
 $route['act_add_fehlzeit'] = 'Mitarbeiter/fun_add_fehlzeit';
 
- $route['admin_aktuel_fehlzeiten'] = 'Admin/all_fehlzeiten';
- $route['all_mitarbeiter_ref'] = 'Admin/all_mitarbeiter';
- $route['add_mitarbeiter_ref'] = 'Admin/add_mitarbeiter';
+$route['admin_aktuel_fehlzeiten'] = 'Admin/all_fehlzeiten';
+$route['all_mitarbeiter_ref'] = 'Admin/all_mitarbeiter';
+$route['add_mitarbeiter_ref'] = 'Admin/add_mitarbeiter';
 
- $route['act_add_mitarbeiter'] = 'Admin/con_add_mitarbeiter';
+$route['act_add_mitarbeiter'] = 'Admin/con_add_mitarbeiter';
+$route['act_update_mitarbeiter'] = 'Admin/update_mit_in_DB';
+$route['update_mitarbeiter/(:any)'] = 'Admin/update_mit/$1';
 
+$route['deleteMitarbeiter/(:any)'] = 'Admin/delete_mitarbeiter/$1';
 
 // $route['admin_project/(:any)'] = 'Admin/project/$1';
 
@@ -90,7 +93,7 @@ $route['act_add_fehlzeit'] = 'Mitarbeiter/fun_add_fehlzeit';
 
 // $route['ref_update_time'] = 'Admin/update_time_in_DB';
 // $route['act_update_project'] = 'Admin/update_project_in_DB';
-// $route['act_update_mitarbeiter'] = 'Admin/update_mit_in_DB';
+
 // $route['send_edited_abteilung'] = 'Admin/update_abt_in_DB';
 
 
@@ -111,8 +114,3 @@ $route['act_add_fehlzeit'] = 'Mitarbeiter/fun_add_fehlzeit';
 
 
 // $route['mit_all_projects'] = 'Mitarbeiter/mit_all_projects';
-
-
-
-
-
