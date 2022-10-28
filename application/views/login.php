@@ -54,7 +54,7 @@ if (isset($error)) {
                 </div>
                 <div class="form-group last mb-4">
                   <label for="Passwort"></label>
-                  <input type="password" class="form-control" id="password" name="password" placeholder="Passwort">
+                  <input type="password" class="form-control" id="password" name="password" placeholder="Passwort" autocomplete="new-password">
 
                 </div>
 

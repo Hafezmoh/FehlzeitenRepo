@@ -29,105 +29,121 @@ $this->session->unset_userdata('time_added');
 <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid px-4">
-            <h1 class="mt-4">Fehlzeit addieren</h1>
-            <h2 class="mt-4"><?= date("l-Y-M-d") ?></h2>
-            <form id="add_fehlzeit_form" method="POST" action="act_add_fehlzeit">
-                <div class="row">
-                    <div class="form-group col-6 flex-column d-flex">
-                        <label class="form-control-label px-3">
-                            Name</label>
-                        <select name="name" id="name_id">
-                            <?php
-                            foreach ($users_array as $value) {
-                            ?>
-                                <option>
+            <div class="row">
+
+                <div class="form-group col-6 flex-column d-flex">
+                    <label class="form-control-label px-3">
+                        <h1 class="mt-4">Fehlzeit addieren </h1>
+                </div>
+                <div class="form-group col-6 flex-column d-flex">
+                    <label class="form-control-label px-3">
+                        <h2 class="mt-4"><?= date("l-Y-M-d") ?></h2>
+                </div>
+
+            </div>
+            <div class="row" style="margin-top: 20px;">
+                <div class="col-12">
+                    <form id="add_fehlzeit_form" method="POST" action="act_add_fehlzeit">
+                        <div class="row">
+                            <div class="form-group col-6 flex-column d-flex">
+                                <label class="form-control-label px-3">
+                                    Name</label>
+                                <select name="name" id="name_id">
                                     <?php
-                                    echo $value['vorname'] . " " . $value['nachname']
+                                    foreach ($users_array as $value) {
                                     ?>
-                                </option>
-                            <?php
-                            }
-                            ?>
-                            <input type="hidden" name="name_id" value="<?php echo $value['id'] ?>">
-                        </select>
-                    </div>
-                    <div class="form-group col-6 flex-column d-flex">
-                        <label class="form-control-label px-3">
-                            Gemeldet durch</label>
-                        <input type="text" value="<?= $this->session->userdata('user_name_session') ?>" disabled>
-                    </div>
-                    <h2>Grund der Abwesenheit</h2>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="radio" id="radioid" value="1">
-                        <label class="form-check-label" for="flexRadioDefault1">
-                            Krankheit
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="radio" id="radioid" value="2">
-                        <label class="form-check-label" for="flexRadioDefault2">
-                            Arztbesuch
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="radio" id="radioid" value="3">
-                        <label class="form-check-label" for="flexRadioDefault2">
-                            Sonstiges:
-                        </label>
-                    </div>
-                    <div class="form-group col-6 flex-column d-flex"> <label class="form-control-label px-3" id="label_id" style="display: none;">
-                            Bitte schreiben Sie eine kürze Erklärung: </label> <input type="text" id="note_id" name="note" style="display: none;">
-                    </div>
-                    <div>
+                                        <option value ="<?php echo $value['id']?>"> 
+                                            <?php
+                                            echo $value['vorname'] . " " . $value['nachname']
+                                            ?>
+                                        </option>
+                                    <?php
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                            <div class="form-group col-6 flex-column d-flex">
+                                <label class="form-control-label px-3">
+                                    Gemeldet durch (Kürzel)</label>
+                                <input type="text" value="<?= $this->session->userdata('user_name_session') ?>" disabled>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 20px;">
+                            <div class="col-6">
+                                <h2>Grund der Abwesenheit</h2>
+                                <div class="form-check radiodiv">
+                                    <input class="form-check-input" type="radio" name="radio" id="krank" value="1">
+                                    <label class="form-check-label" for="krank">
+                                        Krankheit
+                                    </label>
+                                </div>
+                                <div class="form-check radiodiv">
+                                    <input class="form-check-input" type="radio" name="radio" id="artz" value="2">
+                                    <label class="form-check-label" for="artz">
+                                        Arztbesuch
+                                    </label>
+                                </div>
+                                <div class="form-check radiodiv">
+                                    <input class="form-check-input" type="radio" name="radio" id="sonst" value="3">
+                                    <label class="form-check-label" for="sonst">
+                                        Sonstiges:
+                                    </label>
+                                </div>
+
+                            </div>
+                            <div class="form-group col-6 flex-column d-flex"> <label class="form-control-label px-3" id="label_id" style="display: none;">
+                                    Bitte schreiben Sie eine kürze Erklärung: </label> <input type="text" id="note_id" name="note" style="display: none;">
+                            </div>
+                        </div>
+
+                        <div class="form-group col-12 flex-column d-flex"> <label class="form-control-label px-3" id="label2_id" style="display: none; color:tomato ; font-weight:1000 ">
+                                Bitte unbedingt eine Bescheinigung einfordern und unverzüglich an AW schicken. </label>
+                        </div>
+                        <div class="row" style="margin-top: 20px;">
+
+                            <div class="form-group col-6 flex-column d-flex"> <label class="form-control-label px-3">
+                                    Abwesend von: </label> <input type="date" id="von_date_id" name="von_date" value="<?php echo (new DateTime())->format('Y-m-d'); ?>">
+                            </div>
+                            <div class="form-group col-6 flex-column d-flex"> <label class="form-control-label px-3">
+                                    bis vorraussichtlich: </label> <input type="date" id="bis_date_id" name="bis_date">
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-top: 20px;">
+
+                            <div class="form-group col-sm-6 flex-column d-flex">
+                                <label class="form-control-label px-3">
+                                    von Uhr
+                                </label>
+                                <input type="time" id="von_uhr_id" name="von_uhr" value="<?php echo date('H:i') ?>">
+                            </div>
+
+                            <div class="form-group col-sm-6 flex-column d-flex">
+                                <label class="form-control-label px-3">
+                                    bis Uhr
+                                </label>
+                                <input type="time" id="bis_uhr_id" name="bis_uhr">
+                            </div>
+
+                        </div>
+
+                        <div class="d-flex justify-content-center">
+                            <div class="form-group">
+                                <button type="button" onclick="check_mitarbeiter_data()" class="btn-block btn-primary" style="margin-top: 50px;">
+                                    Jetzt absenden</button>
+                            </div>
+                        </div>
                         <br>
-                    </div>
-                    <div class="form-group col-6 flex-column d-flex"> <label class="form-control-label px-3" id="label2_id" style="display: none;">
-                            Bitte unbedingt eine Bescheinigung einfordern und unverzüglich an AW schicken. </label>
-                    </div>
-                    <div>
+                        <div id="success_added" class="alert alert-success" role="alert">
+                            <p>Fehlzeit wurde hinzufügt</p>
+                        </div>
+                        <div id="error_formular" class="alert alert-danger" role="alert">
+                            <p id="error_msg"></p>
+                        </div>
 
-                    </div>
-                    <div class="form-group col-6 flex-column d-flex"> <label class="form-control-label px-3">
-                            Abwesend von: </label> <input type="date" id="von_date_id" name="von_date" value="<?php echo (new DateTime())->format('Y-m-d'); ?>">
-                    </div>
-                    <div class="form-group col-6 flex-column d-flex"> <label class="form-control-label px-3">
-                            bis vorraussichtlich: </label> <input type="date" id="bis_date_id" name="bis_date">
-                    </div>
+                    </form>
                 </div>
-                <div class="row" style="margin-top: 50px;">
-
-                    <div class="form-group col-sm-6 flex-column d-flex">
-                        <label class="form-control-label px-3">
-                            von Uhr
-                        </label>
-                        <input type="time" id="von_uhr_id" name="von_uhr" value="<?php echo date('H:i') ?>">
-                    </div>
-
-                    <div class="form-group col-sm-6 flex-column d-flex">
-                        <label class="form-control-label px-3">
-                            bis Uhr
-                        </label>
-                        <input type="time" id="bis_uhr_id" name="bis_uhr">
-                    </div>
-                </div>
-
-
-
-                <div class="d-flex justify-content-center">
-                    <div class="form-group">
-                        <button type="button" onclick="check_mitarbeiter_data()" class="btn-block btn-primary" style="margin-top: 50px;">
-                            Jetzt absenden</button>
-                    </div>
-                </div>
-                <br><br>
-                <div id="success_added" class="alert alert-success" role="alert">
-                    <p>Fehlzeit wurde hinzufügt</p>
-                </div>
-                <div id="error_formular" class="alert alert-danger" role="alert">
-                    <p id="error_msg"></p>
-                </div>
-
-            </form>
+            </div>
 
         </div>
     </main>
@@ -142,7 +158,7 @@ $this->session->unset_userdata('time_added');
                     $('#label_id').show();
                     $('#note_id').show();
                     $('#label2_id').hide();
-                     radiovar = 3;
+                    radiovar = 3;
                 } else if ($(this).val() == '1' || $(this).val() == '2') {
                     $('#label2_id').show();
                     $('#label_id').hide();
@@ -175,16 +191,14 @@ $this->session->unset_userdata('time_added');
                 show_error('Mitarbeitername ist ungültig!!');
             } else if (grund) {
                 show_error('Bitte wählen Sie einen Grund aus!!');
+            } else if (radiovar == 3 && note.length == 0) {
+                show_error('Bitte schreiben Sie eine Kürze Erklärung!');
             } else if (von_date.length == 0) {
                 show_error('Ab welchem Tag sind Sie abwesend?');
             } else if (bis_date.length == 0) {
-                show_error('Bis welchem Tag sind Sie abwesend?');
-            } else if (von_uhr.length == 0) {
-                show_error('Ab welcher Uhr sind Sie abwesend?');
+                show_error('Bis zu welchem Tag sind Sie abwesend?');
             } else if (bis_uhr.length == 0) {
-                show_error('Bis welcher Uhr sind Sie abwesend?');
-            } else if (radiovar == 3 && note.length == 0 ) {
-                show_error('Note?');
+                show_error('Bis wie viel Uhr sind Sie abwesend?');
             } else {
                 $('#add_fehlzeit_form').submit();
             }

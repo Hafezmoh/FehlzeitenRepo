@@ -69,6 +69,9 @@ $route['act_update_mitarbeiter'] = 'Admin/update_mit_in_DB';
 $route['update_mitarbeiter/(:any)'] = 'Admin/update_mit/$1';
 
 $route['deleteMitarbeiter/(:any)'] = 'Admin/delete_mitarbeiter/$1';
+$route['ref_update_admin_pass'] = 'Admin/update_admin_pass';
+$route['act_update_admin_pass'] = 'Admin/update_admin_pass_in_DB';
+
 
 // $route['admin_project/(:any)'] = 'Admin/project/$1';
 

@@ -23,7 +23,7 @@ class Mitarbeiter extends CI_Controller
     public function fun_add_fehlzeit()
     {
         $user_id = $this->session->userdata('user_id_session');
-        $krank_id = $this->input->post('name_id');
+        $krank_id = $this->input->post('name');
         $grund = $this->input->post('radio');
         $notiz = $this->input->post('note');
         $von = $this->input->post('von_date');
@@ -41,8 +41,6 @@ class Mitarbeiter extends CI_Controller
             $von = $bis;
             $bis = $temp;
         }
-        //          var_dump($user_id,$krank_id,$grund,$notiz,$von,$bis,$von_uhr,$bis_uhr,$reg_datum);
-        //  exit();
         $ist_fehlzeit_addiert = $this->dbmodel->add_fehlzeit($user_id, $krank_id, $grund, $notiz, $von, $bis, $von_uhr, $bis_uhr, $reg_datum);
         if ($ist_fehlzeit_addiert == 1) {
             $this->session->set_userdata('time_added', 1);

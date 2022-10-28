@@ -143,7 +143,7 @@ class Admin extends CI_Controller
                     if ($is_mit_updated == 1) {
                         $this->session->set_userdata('success_updated', 1);
                     }
-                } 
+                }
                 // else {
                 //     $this->session->set_userdata('wrong_pass', 1);
                 //     // var_dump("PAAAAAAAAAAAAAAS");
@@ -180,6 +180,36 @@ class Admin extends CI_Controller
             $this->session->set_userdata('deleted', 1);
         }
         redirect('all_mitarbeiter_ref');
+    }
+
+    public function update_admin_pass()
+    {
+        // var_dump("Hi");
+        // exit();
+        $this->load->view('layout/header');
+        $this->load->view('admin/sidenav');
+        $this->load->view('admin/update_pass');
+        $this->load->view('layout/footer');
+
+        // var_dump($array);
+        // exit();
+    }
+
+
+    public function update_admin_pass_in_DB()
+    {
+
+        $admin_password        = $this->input->post('passwort');
+
+
+        $is_admin_pass_changed = $this->dbmodel->change_admin_pass_in_DB($admin_password);
+
+        if ($is_admin_pass_changed == 1) {
+            $this->session->set_userdata('success_admin_pass_updated', 1);
+        }
+
+
+        redirect('all_mitarbeiter_ref/');
     }
 
     // public function update_mit_in_DB()

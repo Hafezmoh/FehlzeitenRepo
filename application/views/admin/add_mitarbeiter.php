@@ -50,15 +50,15 @@ $this->session->unset_userdata('fail');
                                 Nachname</label> <input type="text" id="nach_name" name="nach_name"> </div>
                     </div>
                     <div class="row justify-content-between text-left" style="margin-top: 50px;">
-                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">
-                                Benutzername</label> <input type="text" id="b_name" name="b_name"> </div>
+                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3" autocomplete="off">
+                                Benutzername (Kürzel)</label> <input type="text" id="b_name" name="b_name"> </div>
                     </div>
                     <div class="row justify-content-between text-left" style="margin-top: 50px;">
                         <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">
-                                Passwort</label> <input type="text" id="passwort" name="passwort"> </div>
+                                Passwort</label> <input type="password" id="passwort" name="passwort" autocomplete="new-password"> </div>
 
                         <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">
-                                Passwort Bestätigung</label> <input type="text" id="w_passwort" name="w_passwort"> </div>
+                                Passwort Bestätigung</label> <input type="password" id="w_passwort" name="w_passwort"> </div>
                     </div>
 
                     <div class="d-flex justify-content-center" style="margin-top: 50px;">

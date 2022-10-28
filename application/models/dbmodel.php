@@ -172,6 +172,14 @@ class dbmodel extends CI_Model
         $this->db->delete('tbl_grund');
     }
 
+    function change_admin_pass_in_DB($admin_password)
+    {
+        $this->db->set('kennwort', $admin_password);
+        $this->db->where('id', 1);
+        $this->db->update('tbl_users');
+        return 1;
+    }
+
     // function delete_project($id)
     // {
     //     $this->db->where('pro_id', $id);

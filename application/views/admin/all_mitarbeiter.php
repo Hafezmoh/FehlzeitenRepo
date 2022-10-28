@@ -7,9 +7,9 @@
         display: none;
     }
 
-    /* #failed_edit {
+    #pass_edit {
         display: none;
-    } */
+    }
 </style>
 
 <?php
@@ -40,17 +40,17 @@ if (isset($updated)) {
 $this->session->unset_userdata('success_updated');
 
 
-// $same_name = $this->session->userdata('fail_name');
-// if (isset($same_name)) {
-// ?>
-//     <!-- <style>
-//         #failed_edit {
-//             display: block;
-//         }
-//     </style> -->
-// <?php
-// }
-// $this->session->unset_userdata('failed');
+$admin_pass_updated = $this->session->userdata('success_admin_pass_updated');
+if (isset($admin_pass_updated)) {
+?>
+    <style>
+        #pass_edit {
+            display: block;
+        }
+    </style>
+<?php
+}
+$this->session->unset_userdata('failed');
 ?>
 <div id="layoutSidenav_content">
     <main>
@@ -108,9 +108,9 @@ $this->session->unset_userdata('success_updated');
             <div id="success_edit" class="alert alert-success" role="alert">
                 <p>Änderung wurden gespeichert</p>
             </div>
-            <!-- <div id="failed_edit" class="alert alert-danger" role="alert">
-                <p>Benuztername exsitiert schon!</p>
-            </div> -->
+            <div id="pass_edit" class="alert alert-success" role="alert">
+                <p>Admin Passwort wurde erfolgreich gändert</p>
+            </div>
         </div>
     </main>
     <script type="text/javascript">

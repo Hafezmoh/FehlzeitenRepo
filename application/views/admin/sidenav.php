@@ -44,7 +44,12 @@
                             Mitarbeiter addieren
                         </a>
                     </div>
+                    
                 </div>
+                <a class="nav-link" href="<?php echo base_url() ?>ref_update_admin_pass">
+                            <div class="sb-nav-link-icon"><i class="fa fa-key" aria-hidden="true"></i></div>
+                            Admin Passwort ändern
+                        </a>
                 <div class="sb-sidenav-footer">
                     <div class="small">Logged in as: <?= $this->session->userdata('user_vorname_session') . " " . $this->session->userdata('user_nachname_session'); ?>
                     </div>

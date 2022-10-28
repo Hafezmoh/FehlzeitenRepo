@@ -53,6 +53,8 @@ class Login extends CI_Controller
 
             case 2:                // 2 is the client role
                 $array['users_array'] = $this->dbmodel->get_all_users();
+                // var_dump($array);
+                // exit();
                 $this->load->view('layout/header');
                 $this->load->view('client/sideNavClient');
                 $this->load->view('client/formular', $array);
