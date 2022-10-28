@@ -30,13 +30,14 @@ class Login extends CI_Controller
     {
         $username =  $this->input->post('username');
         $userpass =  $this->input->post('password');
+        $key = $this->encryption->encrypt($userpass);
 
         // $key = $this->config->item('encryption_key');
         // $salt1 = hash('sha512', $key . $userpass);
         // $salt2 = hash('sha512', $userpass  . $key);
         // $hashedCode = hash('sha512', $salt1 . $userpass  . $salt2);
 
-        $check_user_type = $this->dbmodel->checkuser($username, $userpass);
+        $check_user_type = $this->dbmodel->checkuser($username, $key);
         // $project_array['projects_from_DB'] = $this->dbmodel->get_all_projects();
         // $project_array['worked_time_from_DB'] = $this->dbmodel->get_all_project_time();
 

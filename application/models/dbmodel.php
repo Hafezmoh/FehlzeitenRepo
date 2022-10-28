@@ -4,7 +4,7 @@ class dbmodel extends CI_Model
     function checkuser($username, $password)
     {
         $this->db->where('b_name', $username);
-        $this->db->where('kennwort', $password);
+        $this->db->where($this->encryption->decrypt('kennwort'), $this->encryption->decrypt($password)); // decrypt the DB password and the users password
         $this->db->from('tbl_users');
         $query = $this->db->get();
         $result_row_array = $query->row_array();

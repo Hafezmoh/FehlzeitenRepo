@@ -40,6 +40,9 @@ $this->session->unset_userdata('fail');
     <main>
         <div class="container-fluid px-4">
             <h1 class="mt-4">Mitarbeiter addieren</h1>
+            <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item active">Verwaltung</li>
+            </ol>
             <div class="card-body">
                 <form class="form-card" id="add_mitarbeiter_form" action="act_add_mitarbeiter" method="post">
                     <div class="row justify-content-between text-left">

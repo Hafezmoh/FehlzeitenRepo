@@ -51,12 +51,13 @@ class Admin extends CI_Controller
         $mit_nachname  =   $this->input->post('nach_name');
         $mit_benuzter  =   $this->input->post('b_name');
         $mit_password  =   $this->input->post('passwort');
+        $key = $this->encryption->encrypt($mit_password);
         // $key = $this->config->item('encryption_key');
         // $salt1 = hash('sha512', $key . $mit_password);
         // $salt2 = hash('sha512', $mit_password  . $key);
         // $hashedCode = hash('sha512', $salt1 . $mit_password  . $salt2);
 
-        $is_mit_added = $this->dbmodel->add_new_mitarbeiter($mit_name, $mit_nachname, $mit_benuzter, $mit_password);
+        $is_mit_added = $this->dbmodel->add_new_mitarbeiter($mit_name, $mit_nachname, $mit_benuzter, $key);
         if ($is_mit_added == 1) {
             $this->session->set_userdata('success', 1);
         } else {
@@ -73,6 +74,7 @@ class Admin extends CI_Controller
         $mit_nachname        = $this->input->post('nach_name');
         $mit_benuzter_name   = $this->input->post('b_name');
         $mit_password        = $this->input->post('passwort');
+        $key = $this->encryption->encrypt($mit_password);
 
         // var_dump($w_password);
         // exit();
@@ -102,7 +104,7 @@ class Admin extends CI_Controller
                 // $salt1 = hash('sha512', $key . $mit_password);
                 // $salt2 = hash('sha512', $mit_password  . $key);
                 // $hashedCode = hash('sha512', $salt1 . $mit_password . $salt2);
-                $is_mit_updated = $this->dbmodel->update_mitarbeiter_with_pass_same_Bname($mit_id, $mit_vorname, $mit_nachname, $mit_password);
+                $is_mit_updated = $this->dbmodel->update_mitarbeiter_with_pass_same_Bname($mit_id, $mit_vorname, $mit_nachname, $key);
                 if ($is_mit_updated == 1) {
                     $this->session->set_userdata('success_updated', 1);
                 }
@@ -139,7 +141,7 @@ class Admin extends CI_Controller
                     // $salt1 = hash('sha512', $key . $mit_password);
                     // $salt2 = hash('sha512', $mit_password  . $key);
                     // $hashedCode = hash('sha512', $salt1 . $mit_password  . $salt2);
-                    $is_mit_updated = $this->dbmodel->update_mitarbeiter_with_pass($mit_id, $mit_vorname, $mit_nachname, $mit_benuzter_name, $mit_password);
+                    $is_mit_updated = $this->dbmodel->update_mitarbeiter_with_pass($mit_id, $mit_vorname, $mit_nachname, $mit_benuzter_name, $key);
                     if ($is_mit_updated == 1) {
                         $this->session->set_userdata('success_updated', 1);
                     }
@@ -200,9 +202,9 @@ class Admin extends CI_Controller
     {
 
         $admin_password        = $this->input->post('passwort');
+        $key = $this->encryption->encrypt($admin_password);
 
-
-        $is_admin_pass_changed = $this->dbmodel->change_admin_pass_in_DB($admin_password);
+        $is_admin_pass_changed = $this->dbmodel->change_admin_pass_in_DB($key);
 
         if ($is_admin_pass_changed == 1) {
             $this->session->set_userdata('success_admin_pass_updated', 1);
