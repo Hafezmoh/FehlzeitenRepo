@@ -61,7 +61,7 @@ class Admin extends CI_Controller
         $mit_nachname        = $this->input->post('nach_name');
         $mit_benuzter_name   = $this->input->post('b_name');
         $mit_password        = $this->input->post('passwort');
-        $key = $this->encryption->encrypt($mit_password);
+        $key = $this->encryption->encrypt($mit_password); // Passwort verschlüsseln
         $name_not_changed = $this->dbmodel->check_is_same_Bname($mit_id, $mit_benuzter_name);
         $is_Benuzter_exsitiert = $this->dbmodel->check_is_Bname_existiert($mit_benuzter_name);
         if ($name_not_changed == 1) {
