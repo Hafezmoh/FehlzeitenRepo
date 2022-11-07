@@ -95,4 +95,3 @@ $this->session->unset_userdata('mit_deleted');
                 location.href = "<?php echo base_url() ?>ref_delete_mit/" + id;
         }
     </script>
-

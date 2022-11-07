@@ -47,12 +47,12 @@ $this->session->unset_userdata('fail_name');
 
                         <div class="row justify-content-between text-left" style="margin-top: 50px;">
 
-                            <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">
+                            <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3" >
                                     Benutzername</label> <input type="text" id="b_name" name="b_name" value="<?php echo $get_mit_info_from_DB[0]['b_name'] ?>"></div>
                         </div>
                         <div class="row justify-content-between text-left" style="margin-top: 50px;">
                             <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">
-                                    Passwort</label> <input type="password" id="passwort" name="passwort"></div>
+                                    Passwort</label> <input type="password" id="passwort" name="passwort" autocomplete="new-password"></div>
                             <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">
                                     Passwort Bestätigung</label> <input type="password" id="W_passwort" name="w_passwort"></div>
                         </div>
@@ -68,12 +68,6 @@ $this->session->unset_userdata('fail_name');
                     <div id="error_mitarbeiter" class="alert alert-danger" role="alert">
                         <p id="error_msg"></p>
                     </div>
-                    <!-- <div id="error_password" class="alert alert-danger" role="alert">
-                    <p>Passwort neu eingeben</p>
-                </div> -->
-                    <!-- <div id="success_edited" class="alert alert-success" role="alert">
-                    <p>Änderungen wurden gespeichert</p>
-                </div> -->
                     <div id="failed_edited" class="alert alert-danger" role="alert">
                         <p>Benuztername exsitiert schon!</p>
                     </div>

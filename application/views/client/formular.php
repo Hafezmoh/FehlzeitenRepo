@@ -1,6 +1,3 @@
-<?php
-// var_dump($users_array)
-?>
 <style>
     #success_added {
         display: none;
@@ -52,7 +49,7 @@ $this->session->unset_userdata('time_added');
                                     <?php
                                     foreach ($users_array as $value) {
                                     ?>
-                                        <option value ="<?php echo $value['id']?>"> 
+                                        <option value="<?php echo $value['id'] ?>">
                                             <?php
                                             echo $value['vorname'] . " " . $value['nachname']
                                             ?>
@@ -148,7 +145,6 @@ $this->session->unset_userdata('time_added');
         </div>
     </main>
 
-
     <script>
         var radiovar = 0;
         $(function() {
@@ -167,8 +163,6 @@ $this->session->unset_userdata('time_added');
                 }
             });
         });
-
-        // document.getElementById('pro_date').valueAsDate = new Date();
 
         function show_error(error) {
             $('#error_formular').show();

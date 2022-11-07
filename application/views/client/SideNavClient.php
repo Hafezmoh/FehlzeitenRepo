@@ -30,7 +30,7 @@
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
-                        
+
                     </div>
                 </div>
                 <div class="sb-sidenav-footer">

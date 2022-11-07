@@ -6,4 +6,3 @@ function get_autor_name($id)
     $name = $row_array['b_name'];
     return $name;
 }
-?>

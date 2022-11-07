@@ -3,60 +3,18 @@
         display: none;
     }
 
-    /* #success_edited {
-        display: none;
-    } */
-
     #error_password {
         display: none;
     }
-
-    /* #failed_edited {
-        display: none;
-    } */
 </style>
-
 <?php
-
-// $mit_updated = $this->session->userdata('success_updated');
-// if (isset($mit_updated)) {
-// 
+$same_name = $this->session->userdata('fail_name');
+if (isset($same_name)) {
 ?>
-//
-<!-- <style>
-//         #success_edited {
-//             display: block;
-//         }
-//     </style> -->
-// <?php
-    // }
-    // $this->session->unset_userdata('success_updated');
-    $same_name = $this->session->userdata('fail_name');
-    if (isset($same_name)) {
-    ?>
-    <!-- <style>
-        #failed_edited {
-            display: block;
-        }
-    </style> -->
 <?php
-    }
-    $this->session->unset_userdata('fail_name');
-    // $pass = $this->session->userdata('wrong_pass');
-    // if (isset($pass)) {
-    // 
+}
+$this->session->unset_userdata('fail_name');
 ?>
-//
-<!-- <style>
-//         #error_password {
-//             display: block;
-//         }
-//     </style> -->
-// <?php
-    // }
-    // $this->session->unset_userdata('wrong_pass');
-    ?>
-
 <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid px-4">
@@ -83,15 +41,6 @@
                 <div id="error_data" class="alert alert-danger" role="alert">
                     <p id="error_msg"></p>
                 </div>
-                <!-- <div id="error_password" class="alert alert-danger" role="alert">
-                    <p>Passwort neu eingeben</p>
-                </div> -->
-                <!-- <div id="success_edited" class="alert alert-success" role="alert">
-                    <p>Änderungen wurden gespeichert</p>
-                </div> -->
-                <!-- <div id="failed_edited" class="alert alert-danger" role="alert">
-                    <p>Benuztername exsitiert schon!</p>
-                </div> -->
             </div>
     </main>
     <script>

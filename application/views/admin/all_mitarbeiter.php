@@ -83,8 +83,6 @@ $this->session->unset_userdata('failed');
                     foreach ($mitarbeiter_from_DB as $mit) {
                     ?>
                         <tr>
-                            <!-- <td><a href="<?php echo base_url() ?>admin_project/<?php echo $pro['vorname'] ?>"><?php echo $pro['pro_name'] ?></a> </td> -->
-
                             <td><?php echo $mit['vorname']    ?> </td>
                             <td><?php echo $mit['nachname']    ?> </td>
                             <td><?php echo $mit['b_name'] ?> </td>

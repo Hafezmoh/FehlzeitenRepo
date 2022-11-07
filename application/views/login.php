@@ -1,4 +1,3 @@
-
 <?php
 if (isset($error)) {
 ?>
@@ -55,12 +54,8 @@ if (isset($error)) {
                 <div class="form-group last mb-4">
                   <label for="Passwort"></label>
                   <input type="password" class="form-control" id="password" name="password" placeholder="Passwort" autocomplete="new-password">
-
                 </div>
-
-
                 <input type="submit" value="Log In" class="btn text-white btn-block btn-primary">
-
               </form>
               <br><br>
               <div id="login_fail" class="alert alert-danger" role="alert" style="display: none;">
@@ -68,9 +63,7 @@ if (isset($error)) {
               </div>
             </div>
           </div>
-
         </div>
-
       </div>
     </div>
   </div>
