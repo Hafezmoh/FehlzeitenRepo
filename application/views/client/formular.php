@@ -181,17 +181,17 @@ $this->session->unset_userdata('time_added');
             var bis_uhr = document.getElementsByName('bis_uhr')[0].value;
             console.log(grund);
             console.log(radiovar);
-            if (mit_name.length == 0) {
+            if (mit_name.length == 0) { // ist ein Name geschrieben?
                 show_error('Mitarbeitername ist ungültig!!');
-            } else if (grund) {
+            } else if (grund) {  // ist ein Grund gegeben?
                 show_error('Bitte wählen Sie einen Grund aus!!');
-            } else if (radiovar == 3 && note.length == 0) {
+            } else if (radiovar == 3 && note.length == 0) { // wenn Sonstiges ausgesucht ist, muss eine Erklärung auch geschieben
                 show_error('Bitte schreiben Sie eine Kürze Erklärung!');
-            } else if (von_date.length == 0) {
+            } else if (von_date.length == 0) { // ist ein Anfangsdatum gegeben?
                 show_error('Ab welchem Tag sind Sie abwesend?');
-            } else if (bis_date.length == 0) {
+            } else if (bis_date.length == 0) { // ist ein Enddatum gegeben?
                 show_error('Bis zu welchem Tag sind Sie abwesend?');
-            } else if (bis_uhr.length == 0) {
+            } else if (bis_uhr.length == 0) { // ist ein Endzeit gegeben?
                 show_error('Bis wie viel Uhr sind Sie abwesend?');
             } else {
                 $('#add_fehlzeit_form').submit();

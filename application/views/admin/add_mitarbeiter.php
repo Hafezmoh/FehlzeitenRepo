@@ -12,7 +12,7 @@
     }
 </style>
 <?php
-$mit_added_success = $this->session->userdata('success');
+$mit_added_success = $this->session->userdata('success'); //controller hat die Session gesetted anhand die DBmodell Rückgabe 
 if (isset($mit_added_success)) {
 ?>
     <style>
@@ -22,7 +22,7 @@ if (isset($mit_added_success)) {
     </style>
 <?php
 }
-$this->session->unset_userdata('success');
+$this->session->unset_userdata('success'); //controller hat die Session gesetted anhand die DBmodell Rückgabe 
 $mit_not_added = $this->session->userdata('fail');
 if (isset($mit_not_added)) {
 ?>
@@ -69,7 +69,7 @@ $this->session->unset_userdata('fail');
                                 Mitarbeiter addieren</button> </div>
                     </div>
                 </form>
-                <br><br>
+                <br><br> 
                 <div id="error_mitarbeiter" class="alert alert-danger" role="alert">
                     <p id="error_msg"></p>
                 </div>
@@ -82,7 +82,7 @@ $this->session->unset_userdata('fail');
             </div>
     </main>
     <script>
-        function show_error(error) {
+        function show_error(error) { // error Funktion
             $('#error_mitarbeiter').show();
             $('#error_msg').html(error);
             $('#success_added').hide();
@@ -96,20 +96,18 @@ $this->session->unset_userdata('fail');
             var mit_passwort = document.getElementsByName('passwort')[0].value;
             var mit_passwort_w = document.getElementsByName('w_passwort')[0].value;
 
-            if (mit_name.length == 0) {
+            if (mit_name.length == 0) { // ist ein Vorname geschrieben?
                 show_error('Vorname ist ungültig!!');
-            } else if (mit_nachname.length == 0) {
+            } else if (mit_nachname.length == 0) { // ist ein Nachname geschrieben?
                 show_error('Nachname ist ungültig!!');
-            } else if (mit_benutzer.length == 0) {
-                show_error('Benutzername ist ungültig!!');
-            } else if (mit_passwort.length <= 5) {
-                show_error('Passwort ist zu kürz!! Das Passwort sollte mindestens 5 Zeichnen sein ');
-            } else if (mit_passwort_w.length <= 5) {
-                show_error('Passwort Bestätigung ist zu kürz!! Das Passwort sollte mindestens 5 Zeichnen sein');
-            } else if (mit_passwort != mit_passwort_w) {
+            } else if (mit_benutzer.length == 0) { // ist ein Benutzername geschrieben?
+                show_error('Benutzername ist ungültig!!'); 
+            } else if (mit_passwort.length <= 5) { // ist das Passwort größer als 5 Zeichnen?
+                show_error('Passwort ist zu kürz!! Das Passwort sollte mindestens 5 Zeichnen sein '); 
+            } else if (mit_passwort != mit_passwort_w) { // ist das Passwort mit seiner Wederholung idäntisch?
                 show_error('Die eingegebenen Passwörter stimmen nicht überein');
             } else {
-                $('#add_mitarbeiter_form').submit();
+                $('#add_mitarbeiter_form').submit(); // Datein an den Kontroller schicken POST
             }
         }
     </script>

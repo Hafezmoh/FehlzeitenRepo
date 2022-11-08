@@ -64,23 +64,23 @@ class Admin extends CI_Controller
         $key = $this->encryption->encrypt($mit_password); // Passwort verschlüsseln
         $name_not_changed = $this->dbmodel->check_is_same_Bname($mit_id, $mit_benuzter_name);
         $is_Benuzter_exsitiert = $this->dbmodel->check_is_Bname_existiert($mit_benuzter_name);
-        if ($name_not_changed == 1) {
-            if ($mit_password == "") {
+        if ($name_not_changed == 1) { //das selbe Benuzterdaten
+            if ($mit_password == "") {// das Passwortfeld ist leer
                 $is_mit_updated = $this->dbmodel->update_mitarbeiter_same_Bname($mit_id, $mit_vorname, $mit_nachname);
                 if ($is_mit_updated == 1) {
                     $this->session->set_userdata('success_updated', 1);
                 }
-            } else {
+            } else { // neues Passwort wurde angegeben, muss mitgespeichert werden
                 $is_mit_updated = $this->dbmodel->update_mitarbeiter_with_pass_same_Bname($mit_id, $mit_vorname, $mit_nachname, $key);
                 if ($is_mit_updated == 1) {
                     $this->session->set_userdata('success_updated', 1);
                 }
             }
-        } else {
-            if ($is_Benuzter_exsitiert == 1) {
-                $this->session->set_userdata('fail_name', 1);
+        } else { // neuer Benutzername wurde angegeben
+            if ($is_Benuzter_exsitiert == 1) { // existiert der neue Benuztername in der DB
+                $this->session->set_userdata('fail_name', 1); // Fehler Benuztername existiert
                 redirect('update_mitarbeiter/' . $mit_id);
-            } else {
+            } else { // der neue Benutzername existiert nicht in der DB, muss alle Daten gespeichert werden
                 $is_mit_updated = $this->dbmodel->update_mitarbeiter_with_pass($mit_id, $mit_vorname, $mit_nachname, $mit_benuzter_name, $key);
                 if ($is_mit_updated == 1) {
                     $this->session->set_userdata('success_updated', 1);

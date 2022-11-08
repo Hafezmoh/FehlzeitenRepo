@@ -85,7 +85,7 @@ class dbmodel extends CI_Model
             $this->db->insert('tbl_users', $data);
             return 1;
         } else {
-            return 0;
+            return 0; // Benutzername existiert schon in DB
         }
     }
 
@@ -105,11 +105,11 @@ class dbmodel extends CI_Model
         $query = $this->db->get();
         $result_array = $query->result_array();
         if (!empty($result_array)) {
-            return 1;
+            return 1; // Benutzername  existier
         }
         else
         {
-            return 0;
+            return 0; // Benutzername  existiert nicht
         }
     }
 
@@ -122,10 +122,10 @@ class dbmodel extends CI_Model
         $query = $this->db->get();
         $result_array = $query->result_array();
         if (!empty($result_array)) {
-            return 1;
+            return 1; // Selbe Benutzer
         }
         else{
-            return 0;
+            return 0; // nicht der Selbe Benutzer
         }
     }
 
