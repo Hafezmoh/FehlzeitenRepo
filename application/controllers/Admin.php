@@ -46,7 +46,7 @@ class Admin extends CI_Controller
         $mit_password  =   $this->input->post('passwort');
         $key = $this->encryption->encrypt($mit_password);
         $is_mit_added = $this->dbmodel->add_new_mitarbeiter($mit_name, $mit_nachname, $mit_benuzter, $key);
-        if ($is_mit_added == 1) {
+        if ($is_mit_added == 1) {// Benuztername existiert nicht in der DB
             $this->session->set_userdata('success', 1);
         } else {
             $this->session->set_userdata('fail', 1);
